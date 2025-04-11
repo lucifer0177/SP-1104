@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market News - StockPredictAI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="/static/css/market-news.css" rel="stylesheet">
+</head>
+<body class="market-news-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-chart-line me-2"></i>StockPredictAI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/market-news">Market News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/watchlist">Watchlist</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+                    <button class="btn btn-gradient" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid main-container">
+        <header class="text-center py-4 header-styling mb-4">
+            <h1 aria-label="Market News">Market News</h1>
+            <p class="lead">Stay updated with the latest financial headlines and market trends</p>
+        </header>
+
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="glass-card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Market Overview <span class="badge bg-danger ms-2">Live</span></h5>
+                        <div class="market-summary">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="index-card">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h6>S&P 500</h6>
+                                                <span class="price">5,432.18</span>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="change positive">+26.41 (+0.49%)</span>
+                                                <div class="mini-chart">
+                                                    <div class="chart-up"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="index-card">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h6>NASDAQ</h6>
+                                                <span class="price">18,768.54</span>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="change positive">+112.17 (+0.65%)</span>
+                                                <div class="mini-chart">
+                                                    <div class="chart-up"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="index-card">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h6>DOW JONES</h6>
+                                                <span class="price">42,135.76</span>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="change negative">-31.08 (-0.07%)</span>
+                                                <div class="mini-chart">
+                                                    <div class="chart-down"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="index-card">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h6>RUSSELL 2000</h6>
+                                                <span class="price">2,486.23</span>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="change positive">+17.42 (+0.71%)</span>
+                                                <div class="mini-chart">
+                                                    <div class="chart-up"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="real-time-badge">
+                                <span><i class="fas fa-broadcast-tower pulse"></i> Live Data</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title m-0">Latest Headlines <span class="badge bg-danger ms-2">Live</span></h5>
+                            <div class="news-filter">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm filter-btn dropdown-toggle" type="button" id="newsFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-filter"></i> Filter
+                                    </button>
+                                    <div class="dropdown-menu filter-dropdown" aria-labelledby="newsFilterDropdown">
+                                        <div class="px-3 py-2">
+                                            <div class="mb-3">
+                                                <label class="form-label">Category</label>
+                                                <select class="form-select form-select-sm custom-input" id="newsCategory">
+                                                    <option value="all" selected>All Categories</option>
+                                                    <option value="stocks">Stocks</option>
+                                                    <option value="crypto">Cryptocurrency</option>
+                                                    <option value="forex">Forex</option>
+                                                    <option value="commodities">Commodities</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Source</label>
+                                                <select class="form-select form-select-sm custom-input" id="newsSource">
+                                                    <option value="all" selected>All Sources</option>
+                                                    <option value="bloomberg">Bloomberg</option>
+                                                    <option value="reuters">Reuters</option>
+                                                    <option value="cnbc">CNBC</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Timeframe</label>
+                                                <select class="form-select form-select-sm custom-input" id="newsTimeframe">
+                                                    <option value="today" selected>Today</option>
+                                                    <option value="week">Last Week</option>
+                                                    <option value="month">Last Month</option>
+                                                </select>
+                                            </div>
+                                            <button id="applyNewsFilter" class="btn btn-sm btn-gradient w-100">Apply Filter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group input-group-sm search-input">
+                                    <input type="text" class="form-control custom-input" placeholder="Search news">
+                                    <button class="btn btn-gradient" type="button"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- News will be loaded here dynamically -->
+                        <div id="newsContainer" class="news-container">
+                            <!-- Content will be dynamically loaded by real-time-news.js -->
+                        </div>
+                        <div class="text-center mt-4">
+                            <button id="loadMoreNewsBtn" class="btn btn-outline-light">Load More News</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass-card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Market Sentiment <span class="badge bg-danger ms-2">Live</span></h5>
+                        <div class="sentiment-gauge mb-3">
+                            <div class="gauge-container">
+                                <div class="gauge-value" style="width: 65%;"></div>
+                            </div>
+                            <div class="gauge-labels">
+                                <span>Bearish</span>
+                                <span>Neutral</span>
+                                <span>Bullish</span>
+                            </div>
+                            <div class="gauge-score">65% Bullish</div>
+                        </div>
+                        <p class="sentiment-update">Updated: April 10, 2025, 04:21 UTC</p>
+                        
+                        <h6 class="mt-4">Sector Performance <span class="badge bg-danger ms-2">Live</span></h6>
+                        <div class="sector-performance">
+                            <div class="sector-item">
+                                <div class="sector-name">Technology</div>
+                                <div class="sector-bar">
+                                    <div class="sector-value positive" style="width: 78%">+1.8%</div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-name">Healthcare</div>
+                                <div class="sector-bar">
+                                    <div class="sector-value positive" style="width: 65%">+1.2%</div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-name">Consumer Discretionary</div>
+                                <div class="sector-bar">
+                                    <div class="sector-value positive" style="width: 55%">+0.7%</div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-name">Financials</div>
+                                <div class="sector-bar">
+                                    <div class="sector-value positive" style="width: 45%">+0.3%</div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-name">Utilities</div>
+                                <div class="sector-bar">
+                                    <div class="sector-value negative" style="width: 35%">-0.5%</div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-name">Energy</div>
+                                <div class="sector-bar">
+                                    <div class="sector-value negative" style="width: 60%">-1.2%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Trending Topics <span class="badge bg-danger ms-2">Live</span></h5>
+                        <div class="trending-topics">
+                            <div class="topic-item">
+                                <span class="topic-tag">#FedRates</span>
+                                <span class="topic-count">+127%</span>
+                            </div>
+                            <div class="topic-item">
+                                <span class="topic-tag">#TechEarnings</span>
+                                <span class="topic-count">+98%</span>
+                            </div>
+                            <div class="topic-item">
+                                <span class="topic-tag">#BitcoinETF</span>
+                                <span class="topic-count">+85%</span>
+                            </div>
+                            <div class="topic-item">
+                                <span class="topic-tag">#ConsumerSpending</span>
+                                <span class="topic-count">+64%</span>
+                            </div>
+                            <div class="topic-item">
+                                <span class="topic-tag">#RenewableEnergy</span>
+                                <span class="topic-count">+52%</span>
+                            </div>
+                            <div class="topic-item">
+                                <span class="topic-tag">#ArtificialIntelligence</span>
+                                <span class="topic-count">+48%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Economic Calendar <span class="badge bg-danger ms-2">Today</span></h5>
+                        <div class="economic-calendar">
+                            <div class="event-item">
+                                <div class="event-time">09:30 UTC</div>
+                                <div class="event-details">
+                                    <span class="event-name">U.S. Jobless Claims</span>
+                                    <span class="event-importance high">High</span>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-time">12:00 UTC</div>
+                                <div class="event-details">
+                                    <span class="event-name">ECB Interest Rate Decision</span>
+                                    <span class="event-importance high">High</span>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-time">14:30 UTC</div>
+                                <div class="event-details">
+                                    <span class="event-name">U.S. Manufacturing PMI</span>
+                                    <span class="event-importance medium">Medium</span>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-time">17:00 UTC</div>
+                                <div class="event-details">
+                                    <span class="event-name">Crude Oil Inventories</span>
+                                    <span class="event-importance medium">Medium</span>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-time">19:00 UTC</div>
+                                <div class="event-details">
+                                    <span class="event-name">FOMC Member Speech</span>
+                                    <span class="event-importance low">Low</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-chart-line me-2"></i>StockPredictAI</h5>
+                    <p>Advanced stock price prediction using machine learning and explainable AI techniques to provide transparent insights for your investment decisions.</p>
+                </div>
+                <div class="col-md-2">
+                    <h5>Features</h5>
+                    <ul class="footer-links">
+                        <li><a href="/">Predictions</a></li>
+                        <li><a href="/market-news">News</a></li>
+                        <li><a href="/watchlist">Watchlist</a></li>
+                        <li><a href="/portfolio">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5>Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Stay Updated</h5>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control custom-input" placeholder="Your Email" aria-label="Your Email">
+                        <button class="btn btn-gradient" type="button">Subscribe</button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="copyright">© 2025 StockPredictAI. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
